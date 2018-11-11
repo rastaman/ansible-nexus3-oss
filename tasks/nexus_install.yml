@@ -38,7 +38,7 @@
 
 - name: Stop systemd service
   shell: 'systemctl stop nexus.service'
-  when: nexus_systemd_service_file.stat.exists
+  when: nexus_systemd_enable and nexus_systemd_service_file.stat.exists
 
 - name: Update symlink nexus-latest
   file:
