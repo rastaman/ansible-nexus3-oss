@@ -34,6 +34,7 @@
   stat:
     path: /etc/systemd/system/nexus.service
   register: nexus_systemd_service_file
+  when: nexus_systemd_enable
 
 - name: Stop systemd service
   shell: 'systemctl stop nexus.service'
@@ -166,6 +167,7 @@
   template:
     src: "nexus.service"
     dest: "/etc/systemd/system"
+  when: nexus_systemd_enable
 
 # systemd available from ansible 2.2 only
 # - name: Enable nexus service
@@ -203,19 +205,19 @@
 
 - name: Reload systemd service configuration
   shell: 'systemctl daemon-reload'
-  when: nexus_systemd_enabled
+  when: nexus_systemd_enable
 
 - name: Enable systemd service
   shell: 'systemctl enable nexus.service'
-  when: nexus_systemd_enabled
+  when: nexus_systemd_enable
 
 - name: Restart systemd service
   shell: 'systemctl restart nexus.service'
-  when: nexus_systemd_enabled
+  when: nexus_systemd_enable
 
 - name: Start Nexus manually in background
   shell: '{{ nexus_installation_dir }}/nexus-latest/bin/nexus start'
-  when: not nexus_systemd_enabled
+  when: not nexus_systemd_enable
 
 - name: Waiting for Nexus service to be ready...
   wait_for:

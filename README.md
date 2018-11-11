@@ -60,7 +60,7 @@ The fully qualified domain name under which the nexus instance will be accessibl
 
 Header and footer branding, those can contain HTML.
 
-    nexus_systemd_enabled: true
+    nexus_systemd_enable: true
 
 By default nexus is started with systemd during the execution of the playbook. When this flag is set to false, nexus will be started with a command line in background. It is useful when you use this playbook inside a Docker container (for instance from a [packer](http://packer.io) build).
 
