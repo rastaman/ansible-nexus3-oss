@@ -203,12 +203,19 @@
 
 - name: Reload systemd service configuration
   shell: 'systemctl daemon-reload'
+  when: nexus_systemd_enabled
 
 - name: Enable systemd service
   shell: 'systemctl enable nexus.service'
+  when: nexus_systemd_enabled
 
 - name: Restart systemd service
   shell: 'systemctl restart nexus.service'
+  when: nexus_systemd_enabled
+
+- name: Start Nexus manually in background
+  shell: '{{ nexus_installation_dir }}/nexus-latest/bin/nexus start'
+  when: not nexus_systemd_enabled
 
 - name: Waiting for Nexus service to be ready...
   wait_for:

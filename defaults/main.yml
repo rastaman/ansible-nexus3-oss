@@ -118,6 +118,8 @@ nexus_delete_default_repos: false
 
 nexus_delete_default_blobstore: false
 
+nexus_systemd_enabled: true
+
 #
 # Nexus blobstore config
 nexus_blob_split: false     # True - blobstores per format
