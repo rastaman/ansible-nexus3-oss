@@ -34,7 +34,6 @@
   stat:
     path: /etc/systemd/system/nexus.service
   register: nexus_systemd_service_file
-  when: nexus_systemd_enable
 
 - name: Stop systemd service
   shell: 'systemctl stop nexus.service'
@@ -167,7 +166,6 @@
   template:
     src: "nexus.service"
     dest: "/etc/systemd/system"
-  when: nexus_systemd_enable
 
 # systemd available from ansible 2.2 only
 # - name: Enable nexus service
